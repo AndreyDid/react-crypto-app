@@ -18,7 +18,7 @@ export function CryptoContextProvider({children}) {
         return assets.map(asset => {
             const coin = result.find((c) => c.id === asset.id)
             return {
-                grow: asset.price < coin.price, // boolean true/false
+                grow: asset.price < coin.price,
                 growPercent: percentDifference(asset.price, coin.price),
                 totalAmount: asset.amount * coin.price,
                 totalProfit: asset.amount * coin.price - asset.amount * asset.price,
@@ -28,18 +28,15 @@ export function CryptoContextProvider({children}) {
         })
     }
 
-// Эта функция сработает только один раз при загрузке страницы, потому что она в useEffect
     useEffect(() => {
         async function preload() {
             setLoading(true)
             const {result} = await fakeFetchCrypto()
             const assets = await fetchAssets()
-
             setAssets(mapAssets(assets, result))
             setCrypto(result)
             setLoading(false)
         }
-
         preload()
     }, [])
 

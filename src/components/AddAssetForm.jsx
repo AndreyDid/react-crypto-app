@@ -98,11 +98,9 @@ export default function AddAssetForm({onClose}) {
             }}
             initialValues={{
                 remember: true,
-            }}
-            onFinish={onFinish}
-            initialValues={{
                 price: +coin.price.toFixed(2)
             }}
+            onFinish={onFinish}
             validateMessages={validateMessages}
         >
             <CoinInfo coin={coin}/>
