@@ -1,6 +1,6 @@
 import {Layout, Card, Statistic, List, Typography, Tag} from "antd";
 import {ArrowDownOutlined, ArrowUpOutlined} from '@ant-design/icons'
-import {useContext, useState} from "react";
+import {useContext} from "react";
 import {capitalize} from "../../utils.jsx";
 import CryptoContext from "../../context/crypto-context.jsx";
 
