@@ -1,12 +1,20 @@
-import {cryptoAssets, cryptoData} from "./data.js";
+import {cryptoAssets} from "./data.js";
 
-// можно сделать promice на обычный fetch который будет делать запрос к этой API https//:openapi.coinstats.app/
-export function fakeFetchCrypto() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve(cryptoData)
-        }, 100)
-    })
+export async function fakeFetchCrypto() {
+
+    const data = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            'X-API-KEY': 'CgGh1oMcGtqM2XgQiRcs1aLATGmzCGqQ7PEPL7sYPhg='
+        }
+    };
+    const response = await fetch('https://openapiv1.coinstats.app/coins', data)
+
+    if (!response.ok) throw new Error(response.statusText)
+
+    return (await response.json())
+
 }
 
 export function fetchAssets() {
